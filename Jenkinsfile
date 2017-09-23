@@ -40,6 +40,9 @@ node {
        }
 
 
+    stage('Result') {
+          junit 'artifacts/coverage/*.xml'
+    }
 
     }
     catch (err) {
