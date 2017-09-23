@@ -57,3 +57,5 @@ typings/
 # dotenv environment variables file
 .env
 
+.idea/
+Node-Plus-Nginx-Dynamic-IP.iml

@@ -1,10 +1,14 @@
 {
   "name": "node-plus-nginx-dynamic-ip",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Simple tool which add update ip from remote host in nginx virtual host file.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "node-plus-nginx-dynamic-ip": "bin/www"
   },
   "repository": {
     "type": "git",
@@ -17,9 +21,13 @@
     "API",
     "Dynamic"
   ],
+  "preferGlobal": "true",
   "author": "Grégoire Guémas",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "debug": "~2.6.3",
+    "express": "^4.15.4",
+    "get-installed-path": "^3.0.1",
+    "morgan": "~1.8.1"
   }
 }
