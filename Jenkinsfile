@@ -22,8 +22,7 @@ node {
          sh 'node -v'
          sh 'npm prune'
          sh 'npm install'
-         sh 'npm test'
-
+         sh 'npm run jenkinstest'
        }
 
        stage('Cleanup'){
