@@ -41,7 +41,7 @@ node {
 
 
     stage('Result') {
-          junit 'artifacts/coverage/*.xml'
+          junit 'artifacts/test/*.xml'
     }
 
     }
