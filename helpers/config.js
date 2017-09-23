@@ -18,11 +18,15 @@ class Site {
 
 class Config {
 
+    constructor() {
+    }
+
     /**
      * Open the JSON conf file and file this.conf with it
+     * @param {string} [filename] - Used with mocha.
      */
-    constructor() {
-        this.filename = `conf.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`;
+    init(filename) {
+        this.filename = filename ? filename : `conf.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`;
         this.conf = JSON.parse(fs.readFileSync(this.filename, "UTF-8"));
         this.allowedProtocol = ["http", "https", "ws", "ftp"];
         fs.exists(this.getPathToSiteAvailable(), function (exist) {
@@ -30,7 +34,7 @@ class Config {
                 throw (this.getPathToSiteAvailable() + " is not a valid path to nginx/site-available");
             }
         }.bind(this));
-        if (this.conf["site-registered"].length == 0) {
+        if (this.conf["site-registered"].length === 0) {
             console.log("ERROR", "No site were registered in " + process.cwd() + "/" + this.filename);
             process.exit(-1);
         }

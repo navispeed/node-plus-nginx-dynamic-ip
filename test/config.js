@@ -3,12 +3,12 @@
  */
 
 const assert = require('assert');
-var extend = require('util')._extend;
-
 var config = require('../helpers/config');
 var it = require("mocha").it;
 var describe = require("mocha").describe;
 
+// config.init(`conf.example.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`)
+config.init(`conf.example.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`)
 describe('Config', function () {
 
     describe('#getPort()', function () {

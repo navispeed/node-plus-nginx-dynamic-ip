@@ -24,6 +24,8 @@ class NginxSite {
             fs.writeFile(path, data.split("\n").map((line) => line.replace(new RegExp(`^.{0,}set.{0,}\\$${variable_name}.{0,}`), `\t set $${variable_name} '${ip}'; `)).join("\n"), "utf-8", function (error) {
                 if (error)
                     console.log(error);
+                else
+                    console.log("INFO", site["file"], "was successfully updated")
             });
         });
         return true;

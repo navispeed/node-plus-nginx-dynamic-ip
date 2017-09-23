@@ -1,0 +1,11 @@
+{
+  "port": 15000,
+  "site-available": "C:/Users/greg/Downloads/nginx-1.13.5/nginx-1.13.5/site-available",
+  "site-registered": [
+    {
+      "file": "test.mydomain.conf",
+      "variable_name": "ip_of_my_host",
+      "protocol": "https"
+    }
+  ]
+}
