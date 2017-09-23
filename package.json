@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "bin": {
     "node-plus-nginx-dynamic-ip": "bin/www"
@@ -29,5 +29,8 @@
     "express": "^4.15.4",
     "get-installed-path": "^3.0.1",
     "morgan": "~1.8.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.5.3"
   }
 }

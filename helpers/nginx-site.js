@@ -18,7 +18,6 @@ class NginxSite {
      * @param ip {String} in format XXX.XXX.XXX.XXX
      */
     updateSite(site, ip) {
-
         let path = config.getPathToSiteAvailable() + "/" + site["file"];
         fs.readFile(path, "utf-8", function (e, data) {
             let variable_name = site['variable_name'];
@@ -26,7 +25,6 @@ class NginxSite {
                 if (error)
                     console.log(error);
             });
-
         });
         return true;
     }
@@ -34,7 +32,7 @@ class NginxSite {
     reload() {
         if (/^win/.test(process.platform)) {
             console.log("WARN", "WINDOWS Systems are currently not supported");
-            return true;
+            return false;
         }
         child_process.exec('sudo nginx -s reload', function (error, stdout, stderr) {
             if (error) {

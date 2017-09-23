@@ -4,10 +4,13 @@
  * Go to module installation directory
  */
 
-const getInstalledPath = require('get-installed-path')
-
-process.chdir(getInstalledPath.sync('node-plus-nginx-dynamic-ip'));
-
+const getInstalledPath = require('get-installed-path');
+try {
+    process.chdir(getInstalledPath.sync('node-plus-nginx-dynamic-ip'));
+    //Prod mode
+} catch (e) {
+    //We're probably in dev mode
+}
 /**
  * Module dependencies.
  */

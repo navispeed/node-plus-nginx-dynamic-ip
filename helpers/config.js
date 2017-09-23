@@ -4,14 +4,26 @@
 
 const fs = require('fs')
 
+class Site {
+    /**
+     *
+     * @param file {String}
+     * @param variable_name {String}
+     * @param protocol {String}
+     */
+    constructor(file, variable_name, protocol) {
+
+    }
+}
+
 class Config {
 
     /**
      * Open the JSON conf file and file this.conf with it
      */
     constructor() {
-        let filename = `conf.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`;
-        this.conf = JSON.parse(fs.readFileSync(filename, "UTF-8"));
+        this.filename = `conf.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`;
+        this.conf = JSON.parse(fs.readFileSync(this.filename, "UTF-8"));
         this.allowedProtocol = ["http", "https", "ws", "ftp"];
         fs.exists(this.getPathToSiteAvailable(), function (exist) {
             if (!exist) {
@@ -29,7 +41,11 @@ class Config {
      * @returns {Number}
      */
     getPort() {
-        return this.conf["port"];
+        let port_number = this.conf["port"];
+        if (!port_number || isNaN(parseInt(port_number))) {
+            throw "Invalid port was provided in " + this.filename;
+        }
+        return port_number;
     }
 
     /**
@@ -37,13 +53,16 @@ class Config {
      * @returns {String}
      */
     getPathToSiteAvailable() {
-        return this.conf["site-available"];
+        let path = this.conf["site-available"];
+        if (!path)
+            throw "Property 'site-available' was not specified";
+        return path;
     }
 
     /**
      * Get Site object (describe in conf file) from it filename
      * @param filename {String}
-     * @returns {*}
+     * @returns {Site|undefined}
      */
     getSiteFromFilename(filename) {
         return this.conf["site-registered"].filter(function (site) {
@@ -54,7 +73,8 @@ class Config {
     /**
      * private function, should not be used by other function than constructor
      * Check some error case
-     * @param site{Object}
+     * @param site{Site}
+     * @return boolean{boolean} => false if warning
      */
     checkIfRegisteredSiteIsValid(site) {
         var file = site["file"];
@@ -64,6 +84,7 @@ class Config {
 
         if (!(/^[a-zA-Z_]+$/.test(variable_name))) {
             console.log("WARN", "Variable_name should match with [a-zA-Z_]+");
+            return false;
         }
         fs.exists(pathToSite, function (exist) {
             if (!exist) throw pathToSite + " doesn't exist"
@@ -74,6 +95,7 @@ class Config {
         if (this.allowedProtocol.indexOf(protocol) === -1) {
             console.log("WARN", "protocol should be one of these protocol :", this.allowedProtocol);
         }
+        return true;
     }
 }
 
