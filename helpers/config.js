@@ -31,7 +31,7 @@ class Config {
             }
         }.bind(this));
         if (this.conf["site-registered"].length == 0) {
-            console.log("No site were registered in " + process.env["config.file"]);
+            console.log("No site were registered in " + process.cwd() + "/" + this.filename);
         }
         this.conf["site-registered"].forEach(this.checkIfRegisteredSiteIsValid.bind(this));
     }
