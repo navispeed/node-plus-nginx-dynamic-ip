@@ -1,6 +1,6 @@
 {
   "port": 15000,
-  "site-available": "/etc/nginx/site-available",
+  "site-available": "/etc/nginx/sites-available/",
   "site-registered": [
     {
       "file": "test.mydomain.conf",
