@@ -8,7 +8,7 @@ var it = require("mocha").it;
 var describe = require("mocha").describe;
 
 // config.init(`conf.example.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`)
-config.init(`conf.example.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`)
+config.init(`./test/res/conf.example.${/^win/.test(process.platform) ? 'windows' : "unix"}.json`)
 describe('Config', function () {
 
     describe('#getPort()', function () {
