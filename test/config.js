@@ -13,13 +13,13 @@ describe('Config', function () {
 
     describe('#getPort()', function () {
         it('should throw on invalid port number', function () {
-            let save = config.conf["port"];
+            var save = config.conf["port"];
             config.conf["port"] = "abc";
             assert.throws(config.getPort.bind(config));
             config.conf["port"] = save;
         });
         it('should throw on invalid conf file', function () {
-            let save = config.conf["port"];
+            var save = config.conf["port"];
             delete config.conf["port"];
             assert.throws(config.getPort.bind(config));
             config.conf["port"] = save;
@@ -32,14 +32,14 @@ describe('Config', function () {
 
     describe("#getPathToSiteAvailable", function () {
         it('should throw when no path is specified', function () {
-            let save = config.conf["site-available"];
+            var save = config.conf["site-available"];
             delete config.conf["site-available"];
             assert.throws(config.getPathToSiteAvailable.bind(this));
             config.conf["site-available"] = save;
         });
 
         it('should return a path', function () {
-            let path = !!config.getPathToSiteAvailable();
+            var path = !!config.getPathToSiteAvailable();
             assert.equal(path, true);
         });
 
@@ -65,7 +65,7 @@ describe('Config', function () {
 /*
     describe("#checkIfRegisteredSiteIsValid", function () {
         it("Should return false on invalid variable name", function () {
-            let siteWithInvalidVariableName = {
+            var siteWithInvalidVariableName = {
                 "file": "mocha.test.com",
                 "variable_name": "42ip_of_my_host",
                 "protocol": "https"
@@ -82,7 +82,7 @@ describe('Config', function () {
 
         });*!/
         it("Should return true on valid config site", function () {
-            let validSite = {
+            var validSite = {
                 "file": "mocha.test.com",
                 "variable_name": "ip_of_my_host",
                 "protocol": "https"

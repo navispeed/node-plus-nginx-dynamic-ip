@@ -41,7 +41,7 @@ class Config {
      * @returns {Number}
      */
     getPort() {
-        let port_number = this.conf["port"];
+        var port_number = this.conf["port"];
         if (!port_number || isNaN(parseInt(port_number))) {
             throw "Invalid port was provided in " + this.filename;
         }
@@ -53,7 +53,7 @@ class Config {
      * @returns {String}
      */
     getPathToSiteAvailable() {
-        let path = this.conf["site-available"];
+        var path = this.conf["site-available"];
         if (!path)
             throw "Property 'site-available' was not specified";
         return path;

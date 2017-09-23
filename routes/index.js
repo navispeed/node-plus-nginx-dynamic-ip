@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.get('/:site', function (req, res) {
     const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-    let siteFromFilename = config.getSiteFromFilename(req.params["site"]);
+    var siteFromFilename = config.getSiteFromFilename(req.params["site"]);
     if (!siteFromFilename) {
         res.status(404).json({});
         return;

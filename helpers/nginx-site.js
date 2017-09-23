@@ -18,9 +18,9 @@ class NginxSite {
      * @param ip {String} in format XXX.XXX.XXX.XXX
      */
     updateSite(site, ip) {
-        let path = config.getPathToSiteAvailable() + "/" + site["file"];
+        var path = config.getPathToSiteAvailable() + "/" + site["file"];
         fs.readFile(path, "utf-8", function (e, data) {
-            let variable_name = site['variable_name'];
+            var variable_name = site['variable_name'];
             fs.writeFile(path, data.split("\n").map((line) => line.replace(new RegExp(`^.{0,}set.{0,}\\$${variable_name}.{0,}`), `\t set $${variable_name} '${ip}'; `)).join("\n"), "utf-8", function (error) {
                 if (error)
                     console.log(error);
