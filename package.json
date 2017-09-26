@@ -1,6 +1,6 @@
 {
   "name": "node-plus-nginx-dynamic-ip",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Simple tool which add update ip from remote host in nginx virtual host file.",
   "main": "app.js",
   "scripts": {
